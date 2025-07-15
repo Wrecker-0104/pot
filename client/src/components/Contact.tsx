@@ -48,11 +48,20 @@ export default function Contact() {
     }
     
     try {
-      // TODO: Implement actual form submission
-      console.log('Form submitted:', data);
+      const response = await fetch('/api/contact', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(data),
+      });
       
-      // Reset form after successful submission
-      form.reset();
+      if (response.ok) {
+        console.log('Form submitted successfully');
+        form.reset();
+      } else {
+        console.error('Form submission failed');
+      }
     } catch (error) {
       console.error('Form submission error:', error);
     } finally {
@@ -129,7 +138,7 @@ export default function Contact() {
                   <a href="#" className="w-12 h-12 bg-dark-card rounded-full flex items-center justify-center hover:bg-primary transition-colors">
                     <Github size={20} />
                   </a>
-                  <a href="#" className="w-12 h-12 bg-dark-card rounded-full flex items-center justify-center hover:bg-primary transition-colors">
+                  <a href="https://www.linkedin.com/in/arpitpandey" className="w-12 h-12 bg-dark-card rounded-full flex items-center justify-center hover:bg-primary transition-colors">
                     <Linkedin size={20} />
                   </a>
                   <a href="#" className="w-12 h-12 bg-dark-card rounded-full flex items-center justify-center hover:bg-primary transition-colors">

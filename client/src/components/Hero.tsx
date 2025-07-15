@@ -57,7 +57,7 @@ export default function Hero() {
             <a href="#" className="text-3xl hover:text-primary transition-colors">
               <Github size={32} />
             </a>
-            <a href="#" className="text-3xl hover:text-primary transition-colors">
+            <a href="https://www.linkedin.com/in/arpitpandey" className="text-3xl hover:text-primary transition-colors">
               <Linkedin size={32} />
             </a>
           </div>
