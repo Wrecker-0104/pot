@@ -9,6 +9,7 @@ import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Textarea } from '@/components/ui/textarea';
 import { Label } from '@/components/ui/label';
+import { useToast } from '@/hooks/use-toast';
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -25,6 +26,7 @@ export default function Contact() {
   const sectionRef = useRef<HTMLElement>(null);
   const formRef = useRef<HTMLFormElement>(null);
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const { toast } = useToast();
 
   const form = useForm<ContactForm>({
     resolver: zodResolver(contactSchema),
@@ -48,7 +50,7 @@ export default function Contact() {
     }
     
     try {
-      const response = await fetch('/api/contact', {
+      const response = await fetch('https://formspree.io/f/mgvzekvd', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -59,11 +61,29 @@ export default function Contact() {
       if (response.ok) {
         console.log('Form submitted successfully');
         form.reset();
+        // Show success toast
+        toast({
+          title: "Thanks for contacting us!",
+          description: "We'll get back to you soon.",
+          className: "bg-gradient-to-r from-primary to-secondary border-primary text-white",
+        });
       } else {
         console.error('Form submission failed');
+        // Show error toast
+        toast({
+          title: "Something went wrong",
+          description: "Please try again later.",
+          className: "bg-red-500 border-red-600 text-white",
+        });
       }
     } catch (error) {
       console.error('Form submission error:', error);
+      // Show error toast
+      toast({
+        title: "Network error",
+        description: "Please check your connection and try again.",
+        className: "bg-red-500 border-red-600 text-white",
+      });
     } finally {
       setIsSubmitting(false);
     }
