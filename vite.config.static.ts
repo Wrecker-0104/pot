@@ -16,7 +16,7 @@ export default defineConfig({
     outDir: path.resolve(import.meta.dirname, "dist/public"),
     emptyOutDir: true,
   },
-  base: "./", // Important for GitHub Pages
+  base: "/POTFOLIO/", // Correct base path for your repository
   server: {
     port: 5173,
     host: true,
