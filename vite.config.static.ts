@@ -16,7 +16,7 @@ export default defineConfig({
     outDir: path.resolve(import.meta.dirname, "dist/public"),
     emptyOutDir: true,
   },
-  base: "/POTFOLIO/", // Correct base path for your repository
+  base: "./", // Will work for any repository name
   server: {
     port: 5173,
     host: true,
